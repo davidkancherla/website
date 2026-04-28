@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Support Triage Agent — David Kancherla</title>
-<meta name="description" content="A Claude agent that classifies severity, pulls the likely fix, and drafts a customer reply — built from real day-in-the-life support pain.">
+<meta name="description" content="A Claude / Codex agent that classifies severity, pulls the likely fix, and drafts a customer reply — built from real day-in-the-life support pain.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -261,7 +261,7 @@
   <div class="wrap">
     <div class="status-pill"><span class="dot"></span> in development · interactive demo</div>
     <h1 class="title">Triage support tickets in <em>seconds</em>, not hours.</h1>
-    <p class="subtitle">A Claude agent that reads a support ticket, classifies severity, suggests the likely fix, and drafts a reply in your team's voice. Built from my own day-in-the-life pain in the support queue.</p>
+    <p class="subtitle">A Claude / Codex agent that reads a support ticket, classifies severity, suggests the likely fix, and drafts a reply in your team's voice. Built from my own day-in-the-life pain in the support queue.</p>
     <div class="hero-ctas">
       <a href="#demo" class="btn btn-primary">Try the demo <span class="arr">↓</span></a>
       <a href="index.html#contact" class="btn btn-ghost">Get in touch <span class="arr">↗</span></a>
@@ -344,6 +344,7 @@ Please help — this is blocking critical work.
     </div>
     <div class="stack-list">
       <span class="stack-pill">Claude Sonnet</span>
+      <span class="stack-pill">OpenAI Codex</span>
       <span class="stack-pill">Anthropic SDK</span>
       <span class="stack-pill">Prompt Engineering</span>
       <span class="stack-pill">RAG · Vector Search</span>
@@ -357,7 +358,7 @@ Please help — this is blocking critical work.
 <footer class="site">
   <div class="inner wrap">
     <div>
-      © 2026 David Kancherla<span class="sep">/</span>Built with Claude
+      © 2026 David Kancherla<span class="sep">/</span>Built with Claude &amp; Codex
     </div>
     <div>
       <a href="index.html">Portfolio</a><span class="sep">/</span>
@@ -372,7 +373,7 @@ Please help — this is blocking critical work.
     const out = document.getElementById('outputArea');
     btn.disabled = true;
     btn.innerHTML = 'Analyzing... <span class="spinner" style="width:12px;height:12px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spin 0.8s linear infinite;"></span>';
-    out.innerHTML = '<div class="loading"><div class="spinner"></div> Running Claude · classifying severity · matching past tickets · drafting reply...</div>';
+    out.innerHTML = '<div class="loading"><div class="spinner"></div> Running Claude / Codex · classifying severity · matching past tickets · drafting reply...</div>';
 
     setTimeout(() => {
       out.innerHTML = `
