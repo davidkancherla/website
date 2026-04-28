@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<title>David Kancherla — AI Solutions Engineer</title>
+<meta name="description" content="AI-native Solutions Engineer shipping production AI with Claude — agents, tool use, evals — inside a live enterprise product. Twelve years of enterprise experience. Based in Fremont, CA. Open to Bay Area roles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #111111;
+    --bg-3: #161616;
+    --ink: #fafafa;
+    --ink-2: #a1a1aa;
+    --ink-3: #71717a;
+    --ink-4: #52525b;
+    --line: #1f1f22;
+    --line-2: #2a2a2e;
+    --accent: #f5a96a;
+    --accent-soft: rgba(245, 169, 106, 0.12);
+    --good: #4ade80;
+    --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --maxw: 1180px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    letter-spacing: -0.005em;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  /* ========= NAV ========= */
+  nav.site {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  nav.site.scrolled {
+    border-bottom-color: var(--line);
+    background: rgba(10, 10, 10, 0.92);
+  }
+  nav.site .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    gap: 24px;
+  }
+  .brand {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .brand .dot { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    color: var(--ink-2);
+    font-weight: 400;
+  }
+  .nav-links a {
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 16px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 13.5px;
+    font-weight: 500;
+    border-radius: 999px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { transform: translateY(-1px); background: #fff; }
+  .live {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--good);
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.18);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.18); }
+    50% { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.08); }
+  }
+
+  @media (max-width: 820px) {
+    .nav-links { display: none; }
+    nav.site .inner { padding: 14px 24px; }
+  }
+
+  /* ========= HERO ========= */
+  section.hero {
+    padding: 72px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  section.hero::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--accent-soft), transparent 60%);
+    pointer-events: none;
+    filter: blur(60px);
+    opacity: 0.7;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 14px 7px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    background: var(--bg-2);
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 36px;
+  }
+  .status-badge .live { width: 6px; height: 6px; }
+  .status-badge strong { color: var(--ink); font-weight: 500; }
+
+  h1.hero-title {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 900px;
+  }
+  h1.hero-title em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    padding: 0 0.04em;
+  }
+
+  .lede {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 640px;
+    margin-bottom: 44px;
+    font-weight: 400;
+  }
+  .lede strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    font-family: var(--sans);
+    font-size: 14.5px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid transparent;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .btn-primary:hover {
+    background: #fff;
+    transform: translateY(-1px);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line-2);
+  }
+  .btn-ghost:hover {
+    border-color: var(--ink-3);
+    background: var(--bg-2);
+    transform: translateY(-1px);
+  }
+  .btn .arr {
+    transition: transform 0.2s ease;
+    font-size: 14px;
+  }
+  .btn:hover .arr { transform: translate(2px, -2px); }
+  .btn-ghost:hover .arr { transform: translateY(2px); }
+
+  /* "Currently" strip — subtle, professional */
+  .currently {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+    margin-top: 24px;
+  }
+  .currently .item {
+    padding: 0 24px;
+    border-right: 1px solid var(--line);
+  }
+  .currently .item:first-child { padding-left: 0; }
+  .currently .item:last-child { border-right: none; padding-right: 0; }
+  .currently .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .currently .value {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  @media (max-width: 760px) {
+    .currently { grid-template-columns: repeat(2, 1fr); gap: 16px 0; }
+    .currently .item { padding: 8px 16px; border-right: none; }
+    .currently .item:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--line); }
+    .currently .item:nth-child(even) { padding-right: 0; }
+  }
+
+  /* ========= SECTION HEADER ========= */
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 56px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .sec-title-block {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .sec-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+  }
+  .sec-title {
+    font-weight: 600;
+    font-size: clamp(28px, 3.5vw, 40px);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .sec-sub {
+    font-size: 15px;
+    color: var(--ink-3);
+    max-width: 360px;
+    text-align: right;
+  }
+
+  section.pad { padding: 96px 0; }
+
+  /* ========= ABOUT ========= */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 72px;
+    margin-bottom: 80px;
+  }
+  .about-prose p {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 22px;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+  }
+  .about-prose p em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .about-prose p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .about-side .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+  }
+  .about-side p {
+    color: var(--ink-2);
+    margin-bottom: 18px;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+  .about-side p strong { color: var(--ink); font-weight: 500; }
+
+  /* Skills — clean grid, no brackets */
+  .skills-head {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .skill-cell {
+    padding: 28px 24px;
+    background: var(--bg);
+    transition: background 0.25s ease;
+  }
+  .skill-cell:hover { background: var(--bg-2); }
+  .skill-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.018em;
+    margin-bottom: 8px;
+  }
+  .skill-phrase {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin-bottom: 18px;
+    min-height: 44px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-2);
+    padding: 3px 9px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  .skill-cell:hover .skill-tag {
+    background: var(--bg-3);
+  }
+
+  @media (max-width: 920px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ========= EXPERIENCE ========= */
+  .exp-list {
+    border-top: 1px solid var(--line);
+  }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr 140px;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    align-items: start;
+    transition: background 0.25s ease;
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 8px;
+  }
+  .exp-item:hover {
+    background: var(--bg-2);
+  }
+  .exp-dates {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink-3);
+    line-height: 1.7;
+    padding-top: 6px;
+  }
+  .exp-role {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .exp-co {
+    font-size: 14.5px;
+    color: var(--ink-2);
+    margin-bottom: 14px;
+  }
+  .exp-co strong { color: var(--accent); font-weight: 500; }
+  .exp-desc {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.7;
+    max-width: 660px;
+  }
+  .exp-loc {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-3);
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 880px) {
+    .exp-item {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 28px 12px;
+      margin: 0 -12px;
+    }
+    .exp-loc { text-align: left; }
+    .exp-role { font-size: 19px; }
+  }
+
+  /* ========= PROJECTS ========= */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .proj {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    background: var(--bg-2);
+    position: relative;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+  }
+  .proj:hover {
+    border-color: var(--line-2);
+    transform: translateY(-3px);
+    background: var(--bg-3);
+  }
+  .proj.feature {
+    grid-column: span 3;
+    background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+    border-color: var(--line-2);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    min-height: 320px;
+    padding: 44px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .proj.feature::after {
+    content: "";
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 60%; height: 180%;
+    background: radial-gradient(ellipse, var(--accent-soft), transparent 60%);
+    pointer-events: none;
+    filter: blur(40px);
+  }
+  .proj.feature:hover { transform: translateY(-3px); }
+  .proj-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .status-pill {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 3px 8px;
+    background: var(--bg);
+    color: var(--accent);
+    border: 1px solid rgba(245, 169, 106, 0.3);
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .proj.feature .status-pill { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 500; }
+  .proj-name {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.022em;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .proj.feature .proj-name {
+    font-size: clamp(34px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .proj.feature .proj-name em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+    display: block;
+    font-size: 0.65em;
+    margin-top: 6px;
+  }
+  .proj-desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin-bottom: 22px;
+    flex: 1;
+  }
+  .proj.feature .proj-desc {
+    font-size: 16px;
+    max-width: 540px;
+    line-height: 1.6;
+  }
+  .proj-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-2);
+    padding: 3px 8px;
+    border: 1px solid var(--line-2);
+    border-radius: 5px;
+  }
+  .proj.feature .feature-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: right;
+    position: relative;
+    z-index: 2;
+  }
+  .feature-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(72px, 9vw, 120px);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .feature-note {
+    font-size: 13px;
+    color: var(--ink-2);
+    max-width: 240px;
+    line-height: 1.6;
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 17px;
+  }
+
+  @media (max-width: 920px) {
+    .proj-grid { grid-template-columns: 1fr; }
+    .proj.feature { grid-column: span 1; grid-template-columns: 1fr; padding: 32px; gap: 28px; }
+    .proj.feature .feature-side { align-items: flex-start; text-align: left; flex-direction: row; justify-content: space-between; }
+  }
+
+  /* ========= WRITING ========= */
+  .writing-list {
+    border-top: 1px solid var(--line);
+  }
+  .post {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 40px;
+    padding: 32px 16px;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+    margin: 0 -16px;
+    border-radius: 8px;
+    transition: background 0.25s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .post:hover { background: var(--bg-2); }
+  .post:hover .post-title { color: var(--accent); }
+  .post-cat {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .post-title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    transition: color 0.25s ease;
+    max-width: 640px;
+  }
+  .post-title em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .post-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .post-meta .pill {
+    color: var(--accent);
+    border: 1px solid rgba(245, 169, 106, 0.3);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  @media (max-width: 820px) {
+    .post {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 24px 12px;
+      margin: 0 -12px;
+    }
+  }
+
+  /* ========= CONTACT ========= */
+  section.contact {
+    padding: 130px 0 110px;
+    position: relative;
+    overflow: hidden;
+  }
+  section.contact::before {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--accent-soft), transparent 60%);
+    pointer-events: none;
+    filter: blur(60px);
+    opacity: 0.6;
+  }
+  .contact-headline {
+    font-weight: 600;
+    font-size: clamp(40px, 5.5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+    max-width: 900px;
+    color: var(--ink);
+    position: relative;
+  }
+  .contact-headline em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .contact-note {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 620px;
+    margin-bottom: 56px;
+    line-height: 1.6;
+    position: relative;
+  }
+  .contact-note strong { color: var(--ink); font-weight: 500; }
+  .contact-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 900px;
+    position: relative;
+  }
+  .contact-opt {
+    border: 1px solid var(--line-2);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    background: var(--bg-2);
+  }
+  .contact-opt:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    background: var(--bg-3);
+  }
+  .contact-opt .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .contact-opt .value {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    word-break: break-word;
+    color: var(--ink);
+  }
+  .contact-opt:hover .value { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .contact-options { grid-template-columns: 1fr; }
+    section.contact { padding: 80px 0 70px; }
+  }
+
+  /* ========= FOOTER ========= */
+  footer.site {
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  footer.site .inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  footer.site .col { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  footer.site a { transition: color 0.2s ease; }
+  footer.site a:hover { color: var(--ink); }
+  footer.site .sep { color: var(--ink-4); }
+
+  /* ========= MOTION ========= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--rd, 0ms);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .live { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site" id="nav">
+  <div class="inner">
+    <a href="#top" class="brand">David Kancherla<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta"><span class="live"></span> Open to work</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="status-badge reveal">
+      <span class="live"></span>
+      Currently shipping AI at <strong>ZenOptics</strong> · Open to new roles
+    </div>
+    <h1 class="hero-title reveal">
+      I'm an AI Solutions Engineer who makes enterprise AI <em>actually ship</em>.
+    </h1>
+    <p class="lede reveal">
+      <strong>Twelve years</strong> of making complex enterprise software land with real customers — the last two spent building production AI tools with Claude inside a live enterprise product. Agents, evals, integrations, and the unglamorous work of getting a demo to survive contact with real users.
+    </p>
+    <div class="hero-ctas reveal">
+      <a href="#projects" class="btn btn-primary">See my work <span class="arr">→</span></a>
+      <a href="David_Kancherla_Resume_Final.docx" class="btn btn-ghost" download>Download resume <span class="arr">↓</span></a>
+    </div>
+
+    <div class="currently reveal">
+      <div class="item">
+        <div class="label">Role</div>
+        <div class="value">Implementation &amp; Solutions Eng.</div>
+      </div>
+      <div class="item">
+        <div class="label">Focus</div>
+        <div class="value">Claude · Agents · Evals</div>
+      </div>
+      <div class="item">
+        <div class="label">Building</div>
+        <div class="value">DealRadar (side project)</div>
+      </div>
+      <div class="item">
+        <div class="label">Based</div>
+        <div class="value">Fremont, CA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title-block">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">About</h2>
+      </div>
+      <p class="sec-sub">The person behind the work — and what I actually do.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-prose reveal">
+        <p>I've spent twelve years making complex enterprise technology <strong>work for real customers</strong>. For the last two, I've been shipping AI — building tools with Claude inside a live enterprise product used by real companies. Not <em>demos in a lab</em>.</p>
+        <p>I work at the intersection of AI, solutions engineering, and customer success. I'm drawn to the moment a painful manual workflow becomes <em>automated and invisible</em> — and to the quiet work of making a demo survive contact with production.</p>
+      </div>
+      <div class="about-side reveal">
+        <div class="label">How I work</div>
+        <p>I'm <strong>not a pure developer.</strong> I read and modify code, use Claude to build and extend tools, and deploy AI workflows end-to-end.</p>
+        <p>My value isn't writing the framework — it's <strong>understanding the business problem, designing the right AI solution, and shipping it inside a real product.</strong> I'm the person who turns "we should automate this" into something running in production by Friday.</p>
+      </div>
+    </div>
+
+    <div class="skills-head reveal">What I bring</div>
+    <div class="skills-grid reveal">
+      <div class="skill-cell">
+        <div class="skill-name">AI &amp; Agents</div>
+        <div class="skill-phrase">Shipping production AI with Claude.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Claude API</span>
+          <span class="skill-tag">Prompt Eng</span>
+          <span class="skill-tag">Agents</span>
+          <span class="skill-tag">Tool Use</span>
+          <span class="skill-tag">Evals</span>
+          <span class="skill-tag">RAG</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Implementation</div>
+        <div class="skill-phrase">Getting enterprise customers live, fast.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SSO / SAML</span>
+          <span class="skill-tag">Architecture</span>
+          <span class="skill-tag">Integrations</span>
+          <span class="skill-tag">Migrations</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Cloud &amp; Infra</div>
+        <div class="skill-phrase">Cloud, on-prem, and everything between.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">On-Prem</span>
+          <span class="skill-tag">Observability</span>
+          <span class="skill-tag">CLI Tooling</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Customer-Facing</div>
+        <div class="skill-phrase">The bridge between people and product.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Forward Deployed</span>
+          <span class="skill-tag">Solutions Eng</span>
+          <span class="skill-tag">Enablement</span>
+          <span class="skill-tag">Stakeholders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title-block">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">Experience</h2>
+      </div>
+      <p class="sec-sub">Twelve years across four enterprise software companies.</p>
+    </div>
+
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-dates">Mar 2023 — Present</div>
+        <div>
+          <div class="exp-role">Implementation &amp; Solutions Engineer</div>
+          <div class="exp-co"><strong>ZenOptics</strong> · Enterprise BI Platform</div>
+          <div class="exp-desc">Six hats in one role — enterprise client onboarding, cloud and on-prem architecture reviews, AI tooling built with Claude, customer success, solutions engineering, and technical support. Built a log analyzer, a diagnostic CLI, and a Zendesk AI triage agent into the product — none of which was in my job description.</div>
+        </div>
+        <div class="exp-loc">San Jose · CA</div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dates">Sep 2019 — Mar 2023</div>
+        <div>
+          <div class="exp-role">Lead Application Specialist</div>
+          <div class="exp-co"><strong>PowerSchool</strong> · K-12 Education Software</div>
+          <div class="exp-desc">Led enterprise onboarding and implementation for global K-12 education software. Primary technical contact for US school districts. Led a team of support engineers across time zones.</div>
+        </div>
+        <div class="exp-loc">Bengaluru · IN</div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dates">Aug 2014 — Sep 2019</div>
+        <div>
+          <div class="exp-role">Lead Technical Support Engineer</div>
+          <div class="exp-co"><strong>QUMU Corporation</strong> · Enterprise Video Platform</div>
+          <div class="exp-desc">L2/L3 infrastructure support and REST API integration for an enterprise video platform. Deep work on diagnostics, log forensics, and customer escalations — the pre-AI version of the same instincts I use today.</div>
+        </div>
+        <div class="exp-loc">Hyderabad · IN</div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dates">Oct 2012 — Aug 2014</div>
+        <div>
+          <div class="exp-role">Senior Support Engineer</div>
+          <div class="exp-co"><strong>C-SAM</strong> · A Mastercard Company · Mobile Payments</div>
+          <div class="exp-desc">Technical support for a mobile payment platform serving financial services enterprise clients. Where it all started.</div>
+        </div>
+        <div class="exp-loc">Vadodara · IN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title-block">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Projects</h2>
+      </div>
+      <p class="sec-sub">Things I'm building — shipped, half-shipped, and quietly in progress.</p>
+    </div>
+
+    <div class="proj-grid">
+      <article class="proj feature reveal">
+        <div>
+          <div class="proj-tag">
+            <span>Flagship · Two-sided marketplace</span>
+            <span class="status-pill">Coming Soon</span>
+          </div>
+          <h3 class="proj-name">DealRadar<em>— a hyperlocal deal engine</em></h3>
+          <p class="proj-desc">A two-sided marketplace connecting consumers to real-time merchant deals nearby. The startup I'm building on the side. React Native, Supabase, AI-assisted development end to end — a deliberate test of what shipping with AI actually looks like.</p>
+          <div class="proj-stack">
+            <span class="stack-tag">React Native</span>
+            <span class="stack-tag">Supabase</span>
+            <span class="stack-tag">Claude</span>
+            <span class="stack-tag">Two-Sided</span>
+          </div>
+        </div>
+        <div class="feature-side">
+          <div class="feature-num">01</div>
+          <div class="feature-note">My own startup. The one I'm quietly obsessed with.</div>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-tag">
+          <span>02 · AI Tool</span>
+          <span class="status-pill">Coming Soon</span>
+        </div>
+        <h3 class="proj-name">AI Support Triage Agent</h3>
+        <p class="proj-desc">A Claude agent that classifies severity, pulls the likely fix, and drafts the reply in your team's voice. Built from my own day-in-the-life pain in the support queue.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">Claude</span>
+          <span class="stack-tag">Agents</span>
+          <span class="stack-tag">Evals</span>
+          <span class="stack-tag">React</span>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-tag">
+          <span>03 · AI Tool</span>
+          <span class="status-pill">Coming Soon</span>
+        </div>
+        <h3 class="proj-name">JD ↔ Resume Match Scorer</h3>
+        <p class="proj-desc">Structured outputs plus a careful rubric → match score, gap analysis, and sharp improvement suggestions. Built because hiring is broken in both directions.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">Claude</span>
+          <span class="stack-tag">Structured Output</span>
+          <span class="stack-tag">Next.js</span>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-tag">
+          <span>04 · AI Tool</span>
+          <span class="status-pill">Coming Soon</span>
+        </div>
+        <h3 class="proj-name">AI Meeting Notes Summarizer</h3>
+        <p class="proj-desc">Raw notes in → action items with owners, deadlines, and a shareable summary out. The fastest thing I've shipped: one prompt, one page, one afternoon.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">Claude</span>
+          <span class="stack-tag">Prompt Eng</span>
+          <span class="stack-tag">HTML / JS</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="writing" class="pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title-block">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Writing</h2>
+      </div>
+      <p class="sec-sub">Notes from shipping AI in real enterprise products.</p>
+    </div>
+
+    <div class="writing-list">
+      <article class="post reveal">
+        <div class="post-cat">Essay · Shipping AI</div>
+        <div class="post-title">How I built an AI log analyzer without writing the framework — and what broke first</div>
+        <div class="post-meta">
+          <span>5 min</span>
+          <span class="pill">Coming Soon</span>
+        </div>
+      </article>
+
+      <article class="post reveal">
+        <div class="post-cat">Essay · The Role</div>
+        <div class="post-title">The hidden role: when one person quietly does the job of six</div>
+        <div class="post-meta">
+          <span>7 min</span>
+          <span class="pill">Coming Soon</span>
+        </div>
+      </article>
+
+      <article class="post reveal">
+        <div class="post-cat">Essay · Craft</div>
+        <div class="post-title">You don't need to write every line — but you need to know when the AI is wrong</div>
+        <div class="post-meta">
+          <span>6 min</span>
+          <span class="pill">Coming Soon</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title-block">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title">Contact</h2>
+      </div>
+      <p class="sec-sub">The fastest ways to reach me.</p>
+    </div>
+    <h3 class="contact-headline reveal">Let's build something <em>that ships</em>.</h3>
+    <p class="contact-note reveal">Open to <strong>Implementation, Solutions Engineering, Forward Deployed, and AI deployment roles</strong> in the Bay Area. Always happy to talk through an interesting problem over coffee.</p>
+    <div class="contact-options">
+      <a class="contact-opt reveal" href="mailto:pratikraj.david@gmail.com">
+        <span class="label">Email</span>
+        <span class="value">pratikraj.david@gmail.com</span>
+      </a>
+      <a class="contact-opt reveal" href="https://linkedin.com/in/davidkancherla" target="_blank" rel="noopener">
+        <span class="label">LinkedIn</span>
+        <span class="value">/in/davidkancherla →</span>
+      </a>
+      <a class="contact-opt reveal" href="David_Kancherla_Resume_Final.docx" download>
+        <span class="label">Resume</span>
+        <span class="value">Download PDF ↓</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="inner wrap">
+    <div class="col">
+      <span>© 2026 David Kancherla</span>
+      <span class="sep">/</span>
+      <span>Fremont, CA</span>
+    </div>
+    <div class="col">
+      <a href="mailto:pratikraj.david@gmail.com">pratikraj.david@gmail.com</a>
+      <span class="sep">/</span>
+      <a href="https://linkedin.com/in/davidkancherla" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.setProperty('--rd', (i * 50) + 'ms');
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Trigger hero reveals immediately with stagger
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('in'), 80 + 80 * i);
+    });
+  });
+</script>
+
+</body>
+</html>
